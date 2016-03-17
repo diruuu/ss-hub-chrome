@@ -1,12 +1,12 @@
 var chrome = window.chrome, Notification = window.Notification;
 var Background = (function () {
-    // public timeScrappingURL = "http://hub.softwareseni.co.id/pages/timesheet";
-    // public viewLogURL = "http://hub.softwareseni.co.id/pages/my_timesheet_report";
-    // public submitLogURL = "http://hub.softwareseni.co.id/staff/s_attendance/quick_log";
     function Background() {
         var _this = this;
-        this.timeScrappingURL = "http://localhost/ss-hub-fake/after-start.html";
-        this.viewLogURL = "http://localhost/ss-hub-fake/timesheet.html";
+        // public timeScrappingURL = "http://localhost/ss-hub-fake/after-start.html";
+        // public viewLogURL = "http://localhost/ss-hub-fake/timesheet.html";
+        // public submitLogURL = "http://hub.softwareseni.co.id/staff/s_attendance/quick_log";
+        this.timeScrappingURL = "http://hub.softwareseni.co.id/pages/timesheet";
+        this.viewLogURL = "http://hub.softwareseni.co.id/pages/my_timesheet_report";
         this.submitLogURL = "http://hub.softwareseni.co.id/staff/s_attendance/quick_log";
         chrome.runtime.onInstalled.addListener(function () {
             _this.detectEvent();

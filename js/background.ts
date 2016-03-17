@@ -1,13 +1,13 @@
 const {chrome, Notification}: any = window;
 
 class Background {
-  public timeScrappingURL = "http://localhost/ss-hub-fake/after-start.html";
-  public viewLogURL = "http://localhost/ss-hub-fake/timesheet.html";
-  public submitLogURL = "http://hub.softwareseni.co.id/staff/s_attendance/quick_log";
-
-  // public timeScrappingURL = "http://hub.softwareseni.co.id/pages/timesheet";
-  // public viewLogURL = "http://hub.softwareseni.co.id/pages/my_timesheet_report";
+  // public timeScrappingURL = "http://localhost/ss-hub-fake/after-start.html";
+  // public viewLogURL = "http://localhost/ss-hub-fake/timesheet.html";
   // public submitLogURL = "http://hub.softwareseni.co.id/staff/s_attendance/quick_log";
+
+  public timeScrappingURL = "http://hub.softwareseni.co.id/pages/timesheet";
+  public viewLogURL = "http://hub.softwareseni.co.id/pages/my_timesheet_report";
+  public submitLogURL = "http://hub.softwareseni.co.id/staff/s_attendance/quick_log";
 
   constructor() {
     chrome.runtime.onInstalled.addListener(() => {
