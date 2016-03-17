@@ -1,0 +1,197 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Software Seni Hub</title>
+    <link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
+    <link href='./fonts/styles.css' rel='stylesheet' type='text/css'>
+    <link href='./css/app.css' rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+    <!-- Show loading -->
+    <div id="loading">
+        <svg class="loader" version="1.1" x="0px" y="0px" width="40px" height="40px" viewBox="0 0 50 50">
+            <path d="M43.935,25.145c0-10.318-8.364-18.683-18.683-18.683c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615c8.072,0,14.615,6.543,14.615,14.615H43.935z">
+            </path>
+        </svg>
+    </div>
+    <!-- Show if not login yet -->
+    <div id="not-login" class="warning">
+        <div class="emoji-image">
+            <img src="./images/sad-face.png" alt="">
+        </div>
+        <div class="sub-title">Something wrong</div>
+        <div class="title">happened!</div>
+        <div class="message">
+            You need to login to SS Hub first to use this extension.
+        </div>
+    </div>
+    <!-- Show if hub not started yet -->
+    <div id="not-started" class="warning">
+        <div class="emoji-image">
+            <img src="./images/sad-face.png" alt="">
+        </div>
+        <div class="sub-title">Something wrong</div>
+        <div class="title">happened!</div>
+        <div class="message">
+            You need to start the SS Hub after login to use this extension.
+        </div>
+    </div>
+    <!-- Show if work done -->
+    <div id="has-stopped" class="warning">
+        <div class="emoji-image">
+            <img src="./images/smile-face.png" alt="">
+        </div>
+        <div class="sub-title">SS Hub has</div>
+        <div class="title">stopped!</div>
+        <div class="message">
+            Thank you for your work today. Take a rest and see you!
+        </div>
+    </div>
+    <!-- Show if work still on progress -->
+    <div id="work-not-done">
+        <div class="header">
+            <div class="total-working-label">
+                Total Working Time
+            </div>
+            <div class="total-working-value" id="total-working-value"></div>
+            <div class="tabs">
+                <span data-target="tab-submit" class="active">Submit Log</span>
+                <span data-target="view-logs" id="view-log-tab">View Logs</span>
+                <span data-target="options">Options</span>
+            </div>
+        </div>
+        <div class="content">
+            <div id="tab-submit" class="tab-content active">
+                <div class="send-log-loading" id="send-log-loading">
+                    <svg class="loader" version="1.1" x="0px" y="0px" width="40px" height="40px" viewBox="0 0 50 50">
+                        <path d="M43.935,25.145c0-10.318-8.364-18.683-18.683-18.683c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615c8.072,0,14.615,6.543,14.615,14.615H43.935z">
+                        </path>
+                    </svg>
+                </div>
+                <div id="send-log-status">
+                    <div class="status"></div>
+                    <div class="submit">
+                        <button type="submit" id="submit-another-log">Submit Another Log</button>
+                    </div>
+                </div>
+                <form action="#" id="send-log-form">
+                    <select name="projects" id="projects"></select>
+                    <select name="working-time" id="working-time"></select>
+                    <textarea name="desc" id="desc" cols="30" rows="10" placeholder="Completed Tasks"></textarea>
+                    <div class="submit">
+                        <button type="submit" id="submit-quick-log">Submit Quick Log</button>
+                    </div>
+                </form>
+            </div>
+            <div id="view-logs" class="tab-content">
+                <div class="log-loading" id="log-loading">
+                    <svg class="loader" version="1.1" x="0px" y="0px" width="40px" height="40px" viewBox="0 0 50 50">
+                        <path d="M43.935,25.145c0-10.318-8.364-18.683-18.683-18.683c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615c8.072,0,14.615,6.543,14.615,14.615H43.935z">
+                        </path>
+                    </svg>
+                </div>
+                <div class="no-item" id="no-item">
+                    No log found.
+                </div>
+                <div id="log-items"></div>
+            </div>
+            <div id="options" class="tab-content">
+                <div class="option-item">
+                    <div class="checkbox">
+                        <input id="timeUpEnabled" type="checkbox" class="setting-form" data-setting="timeUpNotifier" data-key="enabled" value="true" checked="" />
+                        <label for="timeUpEnabled">Notify me if it is already: </label>
+                    </div>
+                    <select id="timeUpTime" class="setting-form" data-setting="timeUpNotifier" data-key="time">
+                        <option value="14:00">2:00 PM</option>
+                        <option value="14:30">2:30 PM</option>
+                        <option value="15:00">3:00 PM</option>
+                        <option value="15:30">3:30 PM</option>
+                        <option value="16:00">4:00 PM</option>
+                        <option value="16:30">4:30 PM</option>
+                        <option value="17:00">5:00 PM</option>
+                        <option value="17:30">5:30 PM</option>
+                        <option value="18:00">6:00 PM</option>
+                        <option value="18:30">6:30 PM</option>
+                        <option value="19:00">7:00 PM</option>
+                        <option value="19:30">7:30 PM</option>
+                        <option value="20:00">8:00 PM</option>
+                        <option value="20:30">8:30 PM</option>
+                        <option value="21:00">9:00 PM</option>
+                        <option value="21:30">9:30 PM</option>
+                        <option value="22:00">10.00 PM</option>
+                    </select>
+                    <input type="text" placeholder="Notify Text" id="timeUpText" class="setting-form" data-setting="timeUpNotifier" data-key="notifyText" />
+                </div>
+                <div class="option-item">
+                    <div class="checkbox">
+                        <input id="forgotLoginEnabled" type="checkbox" class="setting-form" data-setting="forgotLoginNotifier" data-key="enabled">
+                        <label for="forgotLoginEnabled">Notify me if I'm not login after: </label>
+                    </div>
+                    <select id="forgotLoginTime" class="setting-form" data-setting="forgotLoginNotifier" data-key="time">
+                        <option value="04:00">4:00 AM</option>
+                        <option value="04:30">4:30 AM</option>
+                        <option value="05:00">5:00 AM</option>
+                        <option value="05:30">5:30 AM</option>
+                        <option value="06:00">6:00 AM</option>
+                        <option value="06:30">6:30 AM</option>
+                        <option value="07:00">7:00 AM</option>
+                        <option value="07:30">7:30 AM</option>
+                        <option value="07:50">7:50 AM</option>
+                        <option value="08:00">8:00 AM</option>
+                        <option value="07:30">7:30 AM</option>
+                        <option value="08:00">8:00 AM</option>
+                        <option value="08:30">8:30 AM</option>
+                        <option value="09:00">9:00 AM</option>
+                        <option value="09:30">9:30 AM</option>
+                        <option value="10:00">10:00 AM</option>
+                    </select>
+                    <input type="text" id="forgotLoginText" class="setting-form" data-setting="forgotLoginNotifier" data-key="notifyText" placeholder="Notify Text" />
+                </div>
+                <div class="option-item">
+                    <div class="checkbox">
+                        <input id="lunchTimeEnabled" class="setting-form" data-setting="lunchTimeNotifier" data-key="enabled" type="checkbox" />
+                        <label for="lunchTimeEnabled">Notify me if it is already lunch time at: </label>
+                    </div>
+                    <select id="lunchTimeTime" class="setting-form" data-setting="lunchTimeNotifier" data-key="time">
+                        <option value="11:00">11:00 AM</option>
+                        <option value="11:30">11:30 AM</option>
+                        <option value="12:00">12:00 AM</option>
+                        <option value="12:30">12:30 AM</option>
+                        <option value="13:00">01:00 PM</option>
+                        <option value="13:30">01:30 PM</option>
+                        <option value="14:00">02:00 PM</option>
+                        <option value="14:30">02:30 PM</option>
+                        <option value="15:00">03:00 PM</option>
+                    </select>
+                    <input type="text" id="lunchTimeText" placeholder="Notify Text" class="setting-form" data-setting="lunchTimeNotifier" data-key="notifyText" />
+                </div>
+                <div class="option-item">
+                    <div class="checkbox">
+                        <input id="breadTimeEnabled" type="checkbox" class="setting-form" data-setting="breadTimeNotifier" data-key="enabled">
+                        <label for="breadTimeEnabled">Notify me if it's bread time at: </label>
+                    </div>
+                    <select id="breadTimeTime" class="setting-form" data-setting="breadTimeNotifier" data-key="time">
+                        <option value="08:00">8:00 AM</option>
+                        <option value="07:30">7:30 AM</option>
+                        <option value="08:00">8:00 AM</option>
+                        <option value="08:30">8:30 AM</option>
+                        <option value="09:00">9:00 AM</option>
+                        <option value="09:30">9:30 AM</option>
+                        <option value="10:00">10:00 AM</option>
+                        <option value="11:00">11:00 AM</option>
+                        <option value="11:30">11:30 AM</option>
+                        <option value="12:00">12:00 AM</option>
+                    </select>
+                    <input type="text" id="breadTimeText" placeholder="Notify Text" class="setting-form" data-setting="breadTimeNotifier" data-key="notifyText" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./js/jquery.js"></script>
+    <script src="./js/popUp.js"></script>
+</body>
+
+</html>

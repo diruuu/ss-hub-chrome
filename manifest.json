@@ -1,0 +1,94 @@
+// {
+//     "manifest_version": 2,
+
+//     "name": "Software Seni Hub",
+//     "description": "This extension for Software Seni Hub",
+//     "version": "1.0",
+
+//     "browser_action": {
+//         "default_icon": "app.png",
+//         "default_popup": "app.html"
+//     },
+//     "background": {
+//         "scripts": ["js/background.js"]
+//     },
+//     "content_scripts": [{
+//         "matches": [
+//             "*://localhost/ss-hub-fake/after-start.html", 
+//             "*://localhost/ss-hub-fake/after-finish.html",
+//             "*://localhost/ss-hub-fake/need-login.html",
+//             "*://localhost/ss-hub-fake/not-start-working.html",
+//             "*://localhost/ss-hub-fake/after-finish.html"
+//         ],
+//         "js": ["js/stateChecker.js"]
+//     }, {
+//         "matches": ["*://localhost/ss-hub-fake/timesheet.html"],
+//         "js": ["js/jquery.js", "js/timeSheetChecker.js"]
+//     }, {
+//         "matches": ["*://hub.softwareseni.co.id/staff/s_attendance/quick_log"],
+//         "js": ["js/jquery.js", "js/submitLogHandler.js"]
+//     }, {
+//         "matches": ["<all_urls>"],
+//         "exclude_matches": [
+//             "*://localhost/ss-hub-fake/after-start.html", 
+//             "*://localhost/ss-hub-fake/timesheet.html",
+//             "*://hub.softwareseni.co.id/staff/s_attendance/quick_log"
+//         ],
+//         "js": ["js/jquery.js", "js/toastr.js", "js/notificationHandler.js"],
+//         "css": ["css/toastr.css"]
+//     }],
+//     "permissions": [
+//         "alarms",
+//         "storage",
+//         "tabs",
+//         "*://hub.softwareseni.co.id/*"
+//     ]
+// }
+
+{
+    "manifest_version": 2,
+
+    "name": "Software Seni Hub",
+    "default_locale": "en",
+    "description": "This extension for Software Seni Hub",
+    "version": "1.0",
+    "author": "Rudi Wahyudi",
+
+    "browser_action": {
+        "default_icon": "app.png",
+        "default_popup": "app.html"
+    },
+    "background": {
+        "scripts": ["js/background.js"]
+    },
+    "content_scripts": [{
+        "matches": [
+            "*://hub.softwareseni.co.id/pages/timesheet", 
+            "*://hub.softwareseni.co.id/program"
+        ],
+        "js": ["js/stateChecker.js"]
+    }, {
+        "matches": ["*://hub.softwareseni.co.id/pages/my_timesheet_report"],
+        "js": ["js/jquery.js", "js/timeSheetChecker.js"]
+    }, {
+        "matches": ["*://hub.softwareseni.co.id/staff/s_attendance/quick_log"],
+        "js": ["js/jquery.js", "js/submitLogHandler.js"]
+    }, {
+        "matches": ["<all_urls>"],
+        "exclude_matches": [
+            "*://hub.softwareseni.co.id/pages/timesheet", 
+            "*://hub.softwareseni.co.id/program",
+            "*://hub.softwareseni.co.id/pages/my_timesheet_report", 
+            "*://hub.softwareseni.co.id/staff/s_attendance/quick_log"
+        ],
+        "js": ["js/jquery.js", "js/toastr.js", "js/notificationHandler.js"],
+        "css": ["css/toastr.css"]
+    }],
+    "permissions": [
+        "alarms",
+        "storage",
+        "tabs",
+        "*://hub.softwareseni.co.id/*"
+    ]
+}
+
